@@ -1,22 +1,27 @@
-import React, { Component } from 'react';
-import HeaderComponent from './components/HeaderComponent'
-import { connect } from 'react-redux'
+import React from 'react';
+import starlinkLogo from './images/starlink_logo.svg';
+import { Layout } from 'antd';
+import Main from './components/Main';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <HeaderComponent />
-        { this.props.isAuthenticated ? <h2>hello { this.props.username }</h2> : null }
-      </div>
-    );
-  }
+const { Header, Footer, Content } = Layout;
+
+function App() {
+  return (
+    <Layout>
+      <Header>
+        <img src={starlinkLogo} className="App-logo" alt="logo" />
+        <p className="title">
+          StarLink Tracker
+        </p>
+      </Header>
+      <Content>
+        <Main />
+      </Content>
+      <Footer>
+        (c)2020 StarLink Tracker. All Rights Reserved. Website Made by Angela Wan
+      </Footer>
+    </Layout>
+  );
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  username: state.auth.user.username
-})
-
-
-export default connect(mapStateToProps)(App)
+export default App;
